@@ -7,10 +7,6 @@ var stylus = require('stylus'); // Better CSS
 var nib = require('nib'); // Adds vendor-prefix support to stylus
 var jade = require('jade'); // Smart HTML templating
 var morgan = require('morgan'); // Connection logging
-var mongo = require('mongodb'); // NoSQL database
-var monk = require('monk'); // Better Mongo interactions
-
-var db = monk('localhost:27017/boilerplate'); // Listens on database server
 
 function compile(str, path) {
     return stylus(str)
