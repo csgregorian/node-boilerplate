@@ -7,11 +7,12 @@ var stylus = require('stylus'); // Better CSS
 var nib = require('nib'); // Adds vendor-prefix support to stylus
 var jade = require('jade'); // Smart HTML templating
 var morgan = require('morgan'); // Connection logging
+var db = require('orchestrate')('api-key'); // Orchestrate database service
 
 function compile(str, path) {
     return stylus(str)
         .set('filename', path)
-        // .set('compress', true) // Comment for readable CSS
+        // .set('compress', true) // Uncomment to minify CSS
         .use(nib());
 }
 
@@ -29,7 +30,7 @@ app.use(cookieParser());
 app.use(morgan('common'));
 
 // Routing
-app.get('/', function(req, res){
+app.get('/', function (req, res) {
   res.render('index')
 });
 
