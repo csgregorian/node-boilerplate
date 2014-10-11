@@ -13,31 +13,31 @@ var monk = require('monk'); // Better Mongo interactions
 var db = monk('localhost:27017'); // Listens on database server
 
 function compile(str, path) {
-    return stylus(str)
-        .set('filename', path)
-        // .set('compress', true) // Comment for readable CSS
-        .use(nib());
+  return stylus(str)
+  .set('filename', path)
+  // .set('compress', true) // Uncomment to minify CSS
+  .use(nib());
 }
 
 // Middleware
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jade')
-app.use(stylus.middleware(
-    {src: __dirname + '/stylesheets',
-     dest: __dirname + '/public',
-     compile: compile
-     }
+app.use(stylus.middleware({
+  src: __dirname + '/stylesheets',
+  dest: __dirname + '/public',
+  compile: compile
+  }
 ))
 app.use(express.static(__dirname + '/public'))
 app.use(cookieParser());
 app.use(morgan('common'));
 
 // Routing
-app.get('/', function(req, res) {
-    res.render('index')
+app.get('/', function (req, res) {
+  res.render('index')
 });
 
-// Sockets
+// // Sockets
 // io.sockets.on('connection', function(socket){
 //   console.log('A user has connected!');
 //   socket.on('disconnect', function(){
@@ -46,6 +46,6 @@ app.get('/', function(req, res) {
 // });
 
 // Server
-http.listen(3000, function() {
-    console.log('listening on localhost:3000');
+http.listen(3000, function(){
+  console.log('Listening on localhost:3000');
 });
