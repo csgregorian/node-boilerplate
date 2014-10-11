@@ -10,7 +10,7 @@ var morgan = require('morgan'); // Connection logging
 var mongo = require('mongodb'); // NoSQL database
 var monk = require('monk'); // Better Mongo interactions
 
-var db = monk('localhost:27017/boilerplate'); // Listens on database server
+var db = monk('localhost:27017'); // Listens on database server
 
 function compile(str, path) {
     return stylus(str)
@@ -33,8 +33,8 @@ app.use(cookieParser());
 app.use(morgan('common'));
 
 // Routing
-app.get('/', function(req, res){
-  res.render('index')
+app.get('/', function(req, res) {
+    res.render('index')
 });
 
 // Sockets
@@ -46,6 +46,6 @@ app.get('/', function(req, res){
 // });
 
 // Server
-http.listen(3000, function(){
-  console.log('listening on localhost:3000');
+http.listen(3000, function() {
+    console.log('listening on localhost:3000');
 });
