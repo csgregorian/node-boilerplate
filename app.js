@@ -9,6 +9,14 @@ var jade = require('jade'); // Smart HTML templating
 var morgan = require('morgan'); // Connection logging
 var db = require('orchestrate')('api-key'); // Orchestrate database service
 
+db.ping()
+.then(function (results) {
+    console.log('Successfully connected to Orchestrate.');
+})
+.fail(function (err) {
+    console.log('Orchestrate connection could not be established.')
+})
+
 function compile(str, path) {
     return stylus(str)
         .set('filename', path)
